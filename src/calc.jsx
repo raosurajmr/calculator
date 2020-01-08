@@ -26,6 +26,15 @@ class Calc extends React.Component {
       } else if (this.state.sign[i] === "-") {
         result = result - this.state.num[i + 1];
       }
+      else if (this.state.sign[i] === "*") {
+        result = result * this.state.num[i + 1];
+      }
+      else if (this.state.sign[i] === "/") {
+        result = result / this.state.num[i + 1];
+      }
+      else if (this.state.sign[i] === "%") {
+        result = result % this.state.num[i + 1];
+      }
     }
     this.setState({ result: result });
   }
