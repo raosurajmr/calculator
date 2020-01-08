@@ -6,13 +6,16 @@ class Calc extends React.Component {
     this.state = { array: [], result: null };
     this.handleClick = this.handleClick.bind(this);
     this.Calculate = this.Calculate.bind(this);
+    this.Clear = this.Clear.bind(this);
   }
   handleClick(str) {
     let ary = this.state.array;
     ary.push(str);
     this.setState({ array: ary });
   }
-
+  Clear() {
+    this.setState({ array: [], result: null })  
+  }
   Calculate() {
     let num = [];
     let num2 = [];
@@ -109,6 +112,10 @@ class Calc extends React.Component {
         </button>
         <button onClick={() => this.Calculate("=")} className="button">
           =
+        </button>
+        <br />
+        <button onClick={() => this.Clear()} >
+          CLEAR
         </button>
         <br />
         <h1 className="display">{this.state.result}</h1>
