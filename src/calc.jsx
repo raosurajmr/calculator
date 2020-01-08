@@ -3,37 +3,49 @@ import React from "react";
 class Calc extends React.Component {
   constructor() {
     super();
-    this.state = { num: [], sign: [], result: null };
-    this.handleClicknum = this.handleClicknum.bind(this);
-    this.handleClicksign = this.handleClicksign.bind(this);
+    this.state = { array: [], result: null };
+    this.handleClick = this.handleClick.bind(this);
     this.Calculate = this.Calculate.bind(this);
   }
-  handleClicknum(num) {
-    let array = this.state.num;
-    array.push(num);
-    this.setState({ num: array });
+  handleClick(str) {
+    let ary = this.state.array;
+    ary.push(str);
+    this.setState({ array: ary });
   }
-  handleClicksign(sign) {
-    let array = this.state.sign;
-    array.push(sign);
-    this.setState({ sign: array });
-  }
+
   Calculate() {
-    let result = this.state.num[0];
-    for (let i = 0; i < this.state.sign.length; i++) {
-      if (this.state.sign[i] === "+") {
-        result = result + this.state.num[i + 1];
-      } else if (this.state.sign[i] === "-") {
-        result = result - this.state.num[i + 1];
+    let num = [];
+    let temp = 0;
+    let sign = [];
+
+    let count = 0;
+    for (let i = 0; i < this.state.array.length; i++) {
+      if (typeof this.state.array[i] === "string") {
+        sign.push(this.state.array[i]);
+        num.push(temp);
+        count = 0;
+        temp = 0;
+      } else {
+        temp = temp + this.state.array[i] * Math.pow(10, count);
+        count++;
       }
-      else if (this.state.sign[i] === "*") {
-        result = result * this.state.num[i + 1];
-      }
-      else if (this.state.sign[i] === "/") {
-        result = result / this.state.num[i + 1];
-      }
-      else if (this.state.sign[i] === "%") {
-        result = result % this.state.num[i + 1];
+    }
+    num.push(temp);
+    console.log(this.state.array);
+    console.log(num);
+    console.log(sign);
+    let result = num[0];
+    for (let i = 0; i < sign.length; i++) {
+      if (sign[i] === "+") {
+        result = result + num[i + 1];
+      } else if (sign[i] === "-") {
+        result = result - num[i + 1];
+      } else if (sign[i] === "*") {
+        result = result * num[i + 1];
+      } else if (sign[i] === "/") {
+        result = result / num[i + 1];
+      } else if (sign[i] === "%") {
+        result = result % num[i + 1];
       }
     }
     this.setState({ result: result });
@@ -41,52 +53,52 @@ class Calc extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={() => this.handleClicknum(0)} className="button">
+        <button onClick={() => this.handleClick(0)} className="button">
           0
         </button>
-        <button onClick={() => this.handleClicknum(1)} className="button">
+        <button onClick={() => this.handleClick(1)} className="button">
           1
         </button>
-        <button onClick={() => this.handleClicknum(2)} className="button">
+        <button onClick={() => this.handleClick(2)} className="button">
           2
         </button>
-        <button onClick={() => this.handleClicknum(3)} className="button">
+        <button onClick={() => this.handleClick(3)} className="button">
           3
         </button>
         <br />
-        <button onClick={() => this.handleClicknum(4)} className="button">
+        <button onClick={() => this.handleClick(4)} className="button">
           4
         </button>
-        <button onClick={() => this.handleClicknum(5)} className="button">
+        <button onClick={() => this.handleClick(5)} className="button">
           5
         </button>
-        <button onClick={() => this.handleClicknum(6)} className="button">
+        <button onClick={() => this.handleClick(6)} className="button">
           6
         </button>
-        <button onClick={() => this.handleClicknum(7)} className="button">
+        <button onClick={() => this.handleClick(7)} className="button">
           7
         </button>
         <br />
-        <button onClick={() => this.handleClicknum(8)} className="button">
+        <button onClick={() => this.handleClick(8)} className="button">
           8
         </button>
-        <button onClick={() => this.handleClicknum(9)} className="button">
+        <button onClick={() => this.handleClick(9)} className="button">
           9
         </button>
-        <button onClick={() => this.handleClicksign("+")} className="button">
+        <button onClick={() => this.handleClick("+")} className="button">
           +
         </button>
-        <button onClick={() => this.handleClicksign("-")} className="button">
+        <button onClick={() => this.handleClick("-")} className="button">
           -
         </button>
         <br />
-        <button onClick={() => this.handleClicksign("*")} className="button">
+        <button onClick={() => this.handleClick("*")} className="button">
           *
         </button>
-        <button onClick={() => this.handleClicksign("/")} className="button">
+        <button onClick={() => this.handleClick("/")} className="button">
           /
         </button>
-        <button onClick={() => this.handleClicksign("%")} className="button">
+        <button onClick={() => this.handleClick("%")} className="button">
           %
         </button>
         <button onClick={() => this.Calculate("=")} className="button">
