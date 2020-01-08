@@ -32,18 +32,59 @@ class Calc extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={() => this.handleClicknum(0)}>0</button>
-        <button onClick={() => this.handleClicknum(1)}>1</button>
-        <button onClick={() => this.handleClicknum(2)}>2</button>
-        <button onClick={() => this.handleClicknum(3)}>3</button>
-        <button onClick={() => this.handleClicknum(4)}>4</button>
-        <button onClick={() => this.handleClicknum(5)}>5</button>
+        <button onClick={() => this.handleClicknum(0)} className="button">
+          0
+        </button>
+        <button onClick={() => this.handleClicknum(1)} className="button">
+          1
+        </button>
+        <button onClick={() => this.handleClicknum(2)} className="button">
+          2
+        </button>
+        <button onClick={() => this.handleClicknum(3)} className="button">
+          3
+        </button>
         <br />
-        <button onClick={() => this.handleClicksign("+")}>+</button>
-        <button onClick={() => this.handleClicksign("-")}>-</button>
-        <button onClick={() => this.Calculate("=")}>=</button>
+        <button onClick={() => this.handleClicknum(4)} className="button">
+          4
+        </button>
+        <button onClick={() => this.handleClicknum(5)} className="button">
+          5
+        </button>
+        <button onClick={() => this.handleClicknum(6)} className="button">
+          6
+        </button>
+        <button onClick={() => this.handleClicknum(7)} className="button">
+          7
+        </button>
         <br />
-        <h1>{this.state.result}</h1>
+        <button onClick={() => this.handleClicknum(8)} className="button">
+          8
+        </button>
+        <button onClick={() => this.handleClicknum(9)} className="button">
+          9
+        </button>
+        <button onClick={() => this.handleClicksign("+")} className="button">
+          +
+        </button>
+        <button onClick={() => this.handleClicksign("-")} className="button">
+          -
+        </button>
+        <br />
+        <button onClick={() => this.handleClicksign("*")} className="button">
+          *
+        </button>
+        <button onClick={() => this.handleClicksign("/")} className="button">
+          /
+        </button>
+        <button onClick={() => this.handleClicksign("%")} className="button">
+          %
+        </button>
+        <button onClick={() => this.Calculate("=")} className="button">
+          =
+        </button>
+        <br />
+        <h1 className="display">{this.state.result}</h1>
       </div>
     );
   }
