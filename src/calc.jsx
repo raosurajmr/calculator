@@ -15,25 +15,31 @@ class Calc extends React.Component {
 
   Calculate() {
     let num = [];
-    let temp = 0;
+    let num2 = [];
+    let temp = [];
     let sign = [];
 
     let count = 0;
     for (let i = 0; i < this.state.array.length; i++) {
       if (typeof this.state.array[i] === "string") {
         sign.push(this.state.array[i]);
-        num.push(temp);
-        count = 0;
-        temp = 0;
+        num2.push(temp);
+        temp = [];
       } else {
-        temp = temp + this.state.array[i] * Math.pow(10, count);
-        count++;
+        temp.push(this.state.array[i]); 
       }
     }
-    num.push(temp);
-    console.log(this.state.array);
-    console.log(num);
-    console.log(sign);
+    num2.push(temp);
+    let temp2;
+    for (let i = 0; i < num2.length; i++) {
+      count = 0;
+      temp2 = 0;
+      for(let j = num2[i].length-1 ; j >= 0; j--) {
+        temp2 = temp2 + num2[i][j]* Math.pow(10,count);
+        count ++;
+      }
+      num.push(temp2)
+    }
     let result = num[0];
     for (let i = 0; i < sign.length; i++) {
       if (sign[i] === "+") {
