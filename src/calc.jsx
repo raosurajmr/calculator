@@ -3,21 +3,33 @@ import React from "react";
 class Calc extends React.Component {
   constructor() {
     super();
-    this.state = { num: [], sign: [] };
+    this.state = { num: [], sign: [], result: null };
     this.handleClicknum = this.handleClicknum.bind(this);
     this.handleClicksign = this.handleClicksign.bind(this);
     this.Calculate = this.Calculate.bind(this);
   }
   handleClicknum(num) {
-    let array = [this.state.num, num];
-    console.log(array);
-    this.setState = { num: array };
+    let array = this.state.num;
+    array.push(num);
+    this.setState({ num: array });
   }
-  handleClicksign(str) {}
-  Calculate(str) {}
+  handleClicksign(sign) {
+    let array = this.state.sign;
+    array.push(sign);
+    this.setState({ sign: array });
+  }
+  Calculate() {
+    let result = this.state.num[0];
+    for (let i = 0; i < this.state.sign.length; i++) {
+      if (this.state.sign[i] === "+") {
+        result = result + this.state.num[i + 1];
+      } else if (this.state.sign[i] === "-") {
+        result = result - this.state.num[i + 1];
+      }
+    }
+    this.setState({ result: result });
+  }
   render() {
-    console.log(this.state.num);
-    console.log(this.state.sign);
     return (
       <div>
         <button onClick={() => this.handleClicknum(0)}>0</button>
@@ -30,6 +42,8 @@ class Calc extends React.Component {
         <button onClick={() => this.handleClicksign("+")}>+</button>
         <button onClick={() => this.handleClicksign("-")}>-</button>
         <button onClick={() => this.Calculate("=")}>=</button>
+        <br />
+        <h1>{this.state.result}</h1>
       </div>
     );
   }
